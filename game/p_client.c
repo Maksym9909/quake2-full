@@ -989,7 +989,6 @@ void respawn (edict_t *self)
 
 		// add a teleportation effect
 		self->s.event = EV_PLAYER_TELEPORT;
-
 		// hold in place briefly
 		self->client->ps.pmove.pm_flags = PMF_TIME_TELEPORT;
 		self->client->ps.pmove.pm_time = 14;

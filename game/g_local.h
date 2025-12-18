@@ -870,7 +870,7 @@ typedef struct
 {
 	client_persistant_t	coop_respawn;	// what to set client->pers to on a respawn
 	int			enterframe;			// level.framenum the client entered the game
-	int			score;				// frags, etc
+	int			score;				// frags, etc		// number of kills 
 	vec3_t		cmd_angles;			// angles sent over in the last command
 
 	qboolean	spectator;			// client is a spectator
@@ -1061,6 +1061,8 @@ struct edict_s
 	float		powerarmor_time;
 
 	char		*map;			// target_changelevel
+
+	int			perk_kills;
 
 	int			viewheight;		// height above origin where eyesight is determined
 	int			takedamage;

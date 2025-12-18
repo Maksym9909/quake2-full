@@ -99,6 +99,7 @@ void KillHeal(edict_t* attacker) {
 	return;
 }
 
+
 /*
 ============
 Killed
@@ -120,6 +121,15 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 			if (coop->value && attacker->client)
 				attacker->client->resp.score++;
 				KillHeal(attacker);
+
+				if (level.killed_monsters == 3)
+				{
+					attacker->client->pers.inventory[ITEM_INDEX(FindItem("Machinegun"))] = 1;
+					attacker->client->pers.inventory[ITEM_INDEX(FindItem("Bullets"))] += 50;
+					attacker->client->newweapon = FindItem("Machinegun");
+					gi.cprintf(attacker, PRINT_HIGH, "Perk Unlocked: Machiengun");
+				}
+
 			// medics won't heal monsters that they kill themselves
 			if (strcmp(attacker->classname, "monster_medic") == 0)
 				targ->owner = attacker;
