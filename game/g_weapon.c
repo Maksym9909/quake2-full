@@ -347,12 +347,14 @@ void fire_blaster (edict_t *self, vec3_t start, vec3_t dir, int damage, int spee
 	edict_t	*bolt;
 	trace_t	tr;
 
-	VectorNormalize (dir);
+	VectorNormalize(dir);// sets the magntude to 1. keeping the direction same
 
 	bolt = G_Spawn();
+	if (!bolt)return;
 	bolt->svflags = SVF_DEADMONSTER;
+
 	// yes, I know it looks weird that projectiles are deadmonsters
-	// what this means is that when prediction is used against the object
+	// what this means is that when prediction is used against the object`
 	// (blaster/hyperblaster shots), the player won't be solid clipped against
 	// the object.  Right now trying to run into a firing hyperblaster
 	// is very jerky since you are predicted 'against' the shots.

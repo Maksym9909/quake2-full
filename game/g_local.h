@@ -595,6 +595,7 @@ typedef struct
 extern	field_t fields[];
 extern	gitem_t	itemlist[];
 
+//KillHeal
 
 //
 // g_cmds.c

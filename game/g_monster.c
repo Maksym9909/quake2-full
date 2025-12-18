@@ -329,7 +329,7 @@ void M_droptofloor (edict_t *ent)
 }
 
 
-void M_SetEffects (edict_t *ent)
+void M_SetEffects (edict_t *ent, edict_t *attacker)
 {
 	ent->s.effects &= ~(EF_COLOR_SHELL|EF_POWERSCREEN);
 	ent->s.renderfx &= ~(RF_SHELL_RED|RF_SHELL_GREEN|RF_SHELL_BLUE);
@@ -416,7 +416,7 @@ void M_MoveFrame (edict_t *self)
 }
 
 
-void monster_think (edict_t *self)
+void monster_think (edict_t *self, edict_t *attacker)
 {
 	M_MoveFrame (self);
 	if (self->linkcount != self->monsterinfo.linkcount)
@@ -426,7 +426,7 @@ void monster_think (edict_t *self)
 	}
 	M_CatagorizePosition (self);
 	M_WorldEffects (self);
-	M_SetEffects (self);
+	M_SetEffects (self,attacker);
 }
 
 
@@ -508,10 +508,12 @@ When a monster dies, it fires all of its targets with the current
 enemy as activator.
 ================
 */
-void monster_death_use (edict_t *self)
+void monster_death_use (edict_t *self, edict_t *attacker)
 {
+	
 	self->flags &= ~(FL_FLY|FL_SWIM);
 	self->monsterinfo.aiflags &= AI_GOOD_GUY;
+
 
 	if (self->item)
 	{
@@ -526,7 +528,9 @@ void monster_death_use (edict_t *self)
 		return;
 
 	G_UseTargets (self, self->enemy);
+
 }
+
 
 
 //============================================================================

@@ -759,7 +759,7 @@ ROCKET
 void Weapon_RocketLauncher_Fire (edict_t *ent)
 {
 	vec3_t	offset, start;
-	vec3_t	forward, right;
+	vec3_t	forward, right, up;
 	int		damage;
 	float	damage_radius;
 	int		radius_damage;
@@ -772,8 +772,8 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 		damage *= 4;
 		radius_damage *= 4;
 	}
-
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
+	
+	AngleVectors (ent->client->v_angle, forward, right, up);
 
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
@@ -781,6 +781,22 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 	VectorSet(offset, 8, 8, ent->viewheight-8);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
 	fire_rocket (ent, start, forward, damage, 650, damage_radius, radius_damage);
+	start[0] += right[0] * 50;
+	start[1] += right[1] * 50;
+	start[2] += right[2] * 50;
+	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+	start[0] -= right[0] * 50;
+	start[1] -= right[1] * 50;
+	start[2] -= right[2] * 50;
+	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+	forward[0] += up[0] * 0.3f;
+	forward[1] += up[1] * 0.3f;
+	forward[2] += up[2] * 0.3f;
+	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+	forward[0] -= up[0] * 0.6f;
+	forward[1] -= up[1] * 0.6f;
+	forward[2] -= up[2] * 0.6f;
+	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);
@@ -830,6 +846,21 @@ void Blaster_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, in
 	ent->client->kick_angles[0] = -1;
 
 	fire_blaster (ent, start, forward, damage, 1000, effect, hyper);
+	start[0] += right[0] * 20;
+	start[1] += right[1] * 20;
+	start[2] += right[2] * 20;
+
+	fire_blaster(ent, start, forward, damage, 1000, effect, hyper);
+	start[0] -= right[0] * 20;
+	start[1] -= right[1] * 20;
+	start[2] -= right[2] * 20;
+
+	fire_blaster(ent, start, forward, damage, 1000, effect, hyper);
+	start[0] -= right[0] * 40;
+	start[1] -= right[1] * 40;
+	start[2] -= right[2] * 40;
+
+	fire_blaster(ent, start, forward, damage, 1000, effect, hyper);
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);

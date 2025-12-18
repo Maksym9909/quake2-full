@@ -84,6 +84,21 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 }
 
 
+void KillHeal(edict_t* attacker) {
+
+	if (!attacker)
+		return;
+
+	if (!attacker->client)
+		return;
+
+	attacker->health += 20;
+
+	if(attacker->health > attacker->max_health)
+		attacker->health = attacker->max_health;
+	return;
+}
+
 /*
 ============
 Killed
@@ -104,6 +119,8 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 			level.killed_monsters++;
 			if (coop->value && attacker->client)
 				attacker->client->resp.score++;
+				
+			KillHeal(attacker);
 			// medics won't heal monsters that they kill themselves
 			if (strcmp(attacker->classname, "monster_medic") == 0)
 				targ->owner = attacker;
