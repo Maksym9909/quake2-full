@@ -121,6 +121,11 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 			if (coop->value && attacker->client)
 				attacker->client->resp.score++;
 				KillHeal(attacker);
+				if (level.killed_monsters == level.total_monsters - 5)
+				{
+					gi.cprintf(attacker, PRINT_HIGH, "Perk Fire_trail");
+				}
+				
 
 				if (level.killed_monsters == 3)
 				{
@@ -135,6 +140,8 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 				targ->owner = attacker;
 		}
 	}
+
+
 
 	if (targ->movetype == MOVETYPE_PUSH || targ->movetype == MOVETYPE_STOP || targ->movetype == MOVETYPE_NONE)
 	{	// doors, triggers, etc

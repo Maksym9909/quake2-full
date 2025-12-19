@@ -1,8 +1,8 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(524,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   g_combat.c
-C:\git\quake2-full\game\g_combat.c(396,51): warning C4100: 'attacker': unreferenced parameter
-C:\git\quake2-full\game\g_combat.c(396,36): warning C4100: 'targ': unreferenced parameter
-C:\git\quake2-full\game\g_combat.c(275,1): warning C4701: potentially uninitialized local variable 'index' used
-C:\git\quake2-full\game\g_combat.c(235,1): warning C4701: potentially uninitialized local variable 'power' used
+C:\git\quake2-full\game\g_combat.c(403,51): warning C4100: 'attacker': unreferenced parameter
+C:\git\quake2-full\game\g_combat.c(403,36): warning C4100: 'targ': unreferenced parameter
+C:\git\quake2-full\game\g_combat.c(282,1): warning C4701: potentially uninitialized local variable 'index' used
+C:\git\quake2-full\game\g_combat.c(242,1): warning C4701: potentially uninitialized local variable 'power' used
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Games\quake2-8.60\final\gamex86.dll

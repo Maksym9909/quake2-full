@@ -852,6 +852,12 @@ void Blaster_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, in
 		float damage_radius = 120;
 		fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
 	}
+
+	if (level.killed_monsters >= level.total_monsters / 2) 
+	{
+		fire_rail(ent, start, forward, 150, 250);
+		
+	}
 	
 
 	// send muzzle flash
@@ -1002,6 +1008,11 @@ void Machinegun_Fire (edict_t *ent)
 		{
 			gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
 			ent->pain_debounce_time = level.time + 1;
+		}
+
+		if (level.killed_monsters == level.total_monsters / 2) 
+		{
+
 		}
 		NoAmmoWeaponChange (ent);
 		return;
