@@ -118,14 +118,17 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 		if (!(targ->monsterinfo.aiflags & AI_GOOD_GUY))
 		{
 			level.killed_monsters++;
+			
 			if (coop->value && attacker->client)
 				attacker->client->resp.score++;
 				KillHeal(attacker);
-				if (level.killed_monsters == level.total_monsters - 5)
+
+				if (level.killed_monsters == 7)
 				{
-					gi.cprintf(attacker, PRINT_HIGH, "Perk Fire_trail");
+					gi.cprintf(attacker, PRINT_HIGH, "Perk Unlocked: Fire_trail");
 				}
 				
+
 
 				if (level.killed_monsters == 3)
 				{

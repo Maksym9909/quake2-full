@@ -898,6 +898,38 @@ void Cmd_PlayerList_f(edict_t *ent)
 	}
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }
+void Cmd_Berserkmode_f(edict_t* ent)
+{
+	if (!ent || !ent->client) return;
+
+	if (ent->health < 30 && level.killed_monsters >= 5)
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Berserk mode already active.\n");
+	}
+	
+	
+
+	if (level.killed_monsters < 5)
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Need at least 5 kills \n");
+		return;
+	}
+	if (ent->health >= 30)
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Need health below 30 to use Berserk.\n");
+		return;
+	}
+	ent->client->pers.inventory[ITEM_INDEX(FindItem("Rocket Launcher"))] = 1;
+	ent->client->pers.inventory[ITEM_INDEX(FindItem("Rockets"))] += 50;
+	ent->client->newweapon = FindItem("Rocket Launcher");
+	
+
+	gi.cprintf(ent, PRINT_HIGH, "BERSERK MODE ACTIVATED!\n");
+	Cmd_God_f(ent);
+}
+
+
+
 
 
 /*
@@ -945,6 +977,8 @@ void ClientCommand (edict_t *ent)
 
 	if (Q_stricmp (cmd, "use") == 0)
 		Cmd_Use_f (ent);
+	if (Q_stricmp(cmd, "berserkmode") == 0)
+		Cmd_Berserkmode_f(ent);
 	else if (Q_stricmp (cmd, "drop") == 0)
 		Cmd_Drop_f (ent);
 	else if (Q_stricmp (cmd, "give") == 0)

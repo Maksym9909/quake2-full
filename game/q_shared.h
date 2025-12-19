@@ -60,6 +60,7 @@ typedef enum {false, true}	qboolean;
 #endif
 
 
+
 // angle indexes
 #define	PITCH				0		// up / down
 #define	YAW					1		// left / right
@@ -1008,6 +1009,7 @@ typedef enum
 #define	STAT_FLASHES			15		// cleared each frame, 1 = health, 2 = armor
 #define STAT_CHASE				16
 #define STAT_SPECTATOR			17
+#define STAT_RAGE				18
 
 #define	MAX_STATS				32
 

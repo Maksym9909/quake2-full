@@ -870,7 +870,7 @@ typedef struct
 {
 	client_persistant_t	coop_respawn;	// what to set client->pers to on a respawn
 	int			enterframe;			// level.framenum the client entered the game
-	int			score;				// frags, etc		// number of kills 
+	int			score;				// frags, etc		// number of kills             // special powerup mode
 	vec3_t		cmd_angles;			// angles sent over in the last command
 
 	qboolean	spectator;			// client is a spectator
@@ -888,6 +888,7 @@ struct gclient_s
 	client_persistant_t	pers;
 	client_respawn_t	resp;
 	pmove_state_t		old_pmove;	// for detecting out-of-pmove changes
+
 
 	qboolean	showscores;			// set layout stat
 	qboolean	showinventory;		// set layout stat
@@ -1062,7 +1063,8 @@ struct edict_s
 
 	char		*map;			// target_changelevel
 
-	int			perk_kills;
+                      
+
 
 	int			viewheight;		// height above origin where eyesight is determined
 	int			takedamage;

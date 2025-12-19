@@ -872,6 +872,8 @@ typedef struct
 	int			enterframe;			// level.framenum the client entered the game
 	int			score;				// frags, etc
 //ZOID
+
+	int			perk_kills_left; // number of kills left to stop a perk
 	int			ctf_team;			// CTF team
 	int			ctf_state;
 	float		ctf_lasthurtcarrier;

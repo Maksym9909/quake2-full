@@ -654,6 +654,9 @@ char *single_statusbar =
 "xv	50 "
 "pic 0 "
 
+
+
+
 // ammo
 "if 2 "
 "	xv	100 "
@@ -701,7 +704,18 @@ char *single_statusbar =
 "	xv	148 "
 "	pic	11 "
 "endif "
+
+// Rage meter
+
+"yt 10 "
+"xr -150 "
+"string \"RAGE Meter\" "
+"yt 2 "
+"xr -80 "
+"num 3 18 "
 ;
+
+
 
 char *dm_statusbar =
 "yb	-24 "

@@ -626,6 +626,8 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.max_cells		= 200;
 	client->pers.max_slugs		= 50;
 
+	
+
 	client->pers.connected = true;
 }
 
@@ -995,6 +997,7 @@ void respawn (edict_t *self)
 
 		self->client->respawn_time = level.time;
 
+		
 		return;
 	}
 
@@ -1801,4 +1804,8 @@ void ClientBeginServerFrame (edict_t *ent)
 			PlayerTrail_Add (ent->s.old_origin);
 
 	client->latched_buttons = 0;
+	
+
+	
+
 }

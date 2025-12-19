@@ -780,23 +780,24 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 
 	VectorSet(offset, 8, 8, ent->viewheight-8);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-	fire_rocket (ent, start, forward, damage, 650, damage_radius, radius_damage);
-	start[0] += right[0] * 50;
-	start[1] += right[1] * 50;
-	start[2] += right[2] * 50;
-	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
-	start[0] -= right[0] * 50;
-	start[1] -= right[1] * 50;
-	start[2] -= right[2] * 50;
-	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
-	forward[0] += up[0] * 0.3f;
-	forward[1] += up[1] * 0.3f;
-	forward[2] += up[2] * 0.3f;
-	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
-	forward[0] -= up[0] * 0.6f;
-	forward[1] -= up[1] * 0.6f;
-	forward[2] -= up[2] * 0.6f;
-	fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+	for (int i = 1; i <= 5; i++)
+	{
+		fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+		start[0] += right[0] * 50;
+		start[1] += right[1] * 50;
+		start[2] += right[2] * 50;
+	}
+	start[0] -= right[0] * 250;
+	start[1] -= right[1] * 250;
+	start[2] -= right[2] * 250;
+	for (int i = 1; i <= 5; i++) {
+		fire_rocket(ent, start, forward, damage, 650, damage_radius, radius_damage);
+		start[0] -= right[0] * 50;
+		start[1] -= right[1] * 50;
+		start[2] -= right[2] * 50;
+	}
+	
+
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);
